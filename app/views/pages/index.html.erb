@@ -1,0 +1,40 @@
+<%= render 'posts/modal' %>
+<div class="container">
+  <div class="row">
+    <div id="side-menu"  class="col-sm-3 bg-secondary p-0 mt-0">
+    </div>
+    <div id="main-content" class="col-sm-9 bg-white p-3 m-0 card-group">
+      <%= render @posts%>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<!-- Custom JavaScript -->
+<script>
+  // Wait for the document to fully load
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // When a card is clicked
+    document.querySelectorAll('.single-post-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+
+        // Get data from the clicked card
+        var postedBy = card.getAttribute('data-posted-by');
+        var title = card.getAttribute('data-title');
+        var content = card.getAttribute('data-content');
+        var interestedUrl = card.getAttribute('data-interested-url');
+
+        // Populate the modal with data
+        document.querySelector('.modal-header .posted-by').textContent = "Posted by: " + postedBy;
+        document.querySelector('.loaded-data h3').textContent = title;
+        document.querySelector('.loaded-data p').textContent = content;
+        document.querySelector('.loaded-data .interested a').setAttribute('href', interestedUrl);
+
+        // Show the modal
+        var modal = new bootstrap.Modal(document.getElementById('myModal'));
+        modal.show();
+      });
+    });
+  });
+</script>
