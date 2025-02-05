@@ -1,0 +1,14 @@
+<% branch_path_name = "#{params[:action]}_posts_path" %>
+<div class="col-sm-12">
+  <ul class="nav nav-pills mb-3">
+    <li class="nav-item">
+      <%= link_to "All", send(branch_path_name), class: "nav-link #{'active' if params[:category].blank?}" %>
+    </li>
+    <% @categories.each do |category| %>
+      <li class="nav-item">
+        <%= link_to category.name, send(branch_path_name, category: category.name), class: "nav-link #{'active' if params[:category] == category.name}" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<!-- col-sm-12 -->

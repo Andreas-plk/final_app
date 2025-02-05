@@ -1,0 +1,27 @@
+<div id="branch-main-content" class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 text-center">
+      <h1 class="page-title mb-4"><%= page_title %></h1>
+      <div class="d-flex justify-content-center">
+        <%= render 'posts/branch/create_new_post', branch: branch %>
+      </div>
+    </div>
+  </div>
+  <!-- row -->
+  <div class="row">
+    <%= render 'posts/branch/categories', branch: branch %>
+  </div>
+  <div class="row">
+    <div class="col-sm-12" id="feed">
+      <%= render @posts %>
+      <%= render no_posts_partial_path @posts %>
+    </div>
+  </div>
+  <!-- row -->
+  <div class="infinite-scroll">
+    <h4>
+      <%= will_paginate @posts ,class:"ml-2"%>
+    </h4>
+  </div>
+</div>
+<!-- container -->

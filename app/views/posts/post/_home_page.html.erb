@@ -1,0 +1,21 @@
+<% border_classes = ["border-primary", "border-success", "border-danger", "border-warning", "border-info", "border-dark"] %>
+<div class="col-md-4 mb-3 p-2 single-post-card" 
+    data-post-id="<%= post.id %>" 
+    data-controller="modal"
+     data-action="click->modal#open"
+  data-posted-by="Posted by <%= post.user.name %>" 
+  data-title="<%= post.title %>" 
+  data-content="<%= post.content %>" 
+  data-interested-url="<%= post_path(post.id) %> "
+  style="height:150px;">
+  <div class="card border border-5 rounded-pill <%= border_classes.sample %>"
+  style="height:100px;cursor:pointer; transition: background-color 0.3s, color 0.3s;"
+  onmouseover="this.style.backgroundColor='black'; this.style.color='white';" 
+  onmouseout="this.style.backgroundColor='';this.style.color='';">
+    <div class="card-body text-center">
+      <h4 class="post-text ">
+        <%= truncate(post.title, :length => 60) %>
+      </h4>
+    </div>
+  </div>
+</div>

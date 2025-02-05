@@ -1,50 +1,9 @@
 <%= render 'posts/modal' %>
 <div class="container">
-  <div class="row">
+  <div class="row align-items-start">
     <%= render 'pages/index/side_menu' %>
     <%= render 'pages/index/main_content' %>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-<script>
-  // Wait for the document to fully load
-  document.addEventListener("turbo:load", function() {
-
-    // When a card is clicked
-    document.querySelectorAll('.single-post-card').forEach(function(card) {
-      card.addEventListener('click', function() {
-
-        // Get data from the clicked card
-        var postedBy = card.getAttribute('data-posted-by');
-        var title = card.getAttribute('data-title');
-        var content = card.getAttribute('data-content');
-        var interestedUrl = card.getAttribute('data-interested-url');
-
-        // Populate the modal with data
-        document.querySelector('.modal-header .posted-by').textContent = "Posted by: " + postedBy;
-        document.querySelector('.loaded-data h3').textContent = title;
-        document.querySelector('.loaded-data p').textContent = content;
-        document.querySelector('.loaded-data .interested a').setAttribute('href', interestedUrl);
-
-        // Show the modal
-        var modal = new bootstrap.Modal(document.getElementById('myModal'));
-        modal.show();
-      });
-    });
-
-
-      var modal = document.getElementById('myModal');
-      var modalInstance = new bootstrap.Modal(modal);
-
-      modal.addEventListener('hidden.bs.modal', function () {
-        // Ensure that navigation works after closing the modal
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) {
-          backdrop.remove();
-        }
-        // Optionally you can trigger a Turbo (or Turbolinks) visit here if needed:
-        // Turbo.visit(window.location.href); // Uncomment if you want a full-page reload after closing modal
-      });
-      });
-</script>

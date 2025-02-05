@@ -14,6 +14,8 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
@@ -24,3 +26,48 @@
     <%= yield %>
   </body>
 </html>
+<script>
+  // Wait for the document to fully load
+  document.addEventListener("turbo:load", function() {
+
+    // When a card is clicked
+    document.querySelectorAll('.single-post-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+
+        // Get data from the clicked card
+        var postedBy = card.getAttribute('data-posted-by');
+        var title = card.getAttribute('data-title');
+        var content = card.getAttribute('data-content');
+        var interestedUrl = card.getAttribute('data-interested-url');
+
+        // Populate the modal with data
+        document.querySelector('.modal-header .posted-by').textContent = "Posted by: " + postedBy;
+        document.querySelector('.loaded-data h3').textContent = title;
+        document.querySelector('.loaded-data p').textContent = content;
+        document.querySelector('.loaded-data .interested a').setAttribute('href', interestedUrl);
+
+        // Show the modal
+        var modal = new bootstrap.Modal(document.getElementById('myModal'));
+        modal.show();
+      });
+    });
+
+
+      var modal = document.getElementById('myModal');
+      var modalInstance = new bootstrap.Modal(modal);
+
+        modal.addEventListener('hide.bs.modal', function () {
+          // Ensure that navigation works after closing the modal
+          document.body.style.overflow = '';
+           if (document.activeElement) {
+            document.activeElement.blur();
+        }
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+              backdrop.remove();
+            }
+          // Optionally you can trigger a Turbo (or Turbolinks) visit here if needed:
+          // Turbo.visit(window.location.href); // Uncomment if you want a full-page reload after closing modal
+        });
+      });
+</script>
