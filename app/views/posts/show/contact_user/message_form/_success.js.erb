@@ -1,0 +1,12 @@
+<%= render 'private/conversations/open' %>
+<script>
+  document.addEventListener("turbo:load", function() {
+    document.querySelectorAll('.contact-user').forEach(element => {
+      element.outerHTML = `
+        <div class="contact-user">
+          <div class="contacted-user">Message has been sent</div>
+        </div>
+      `;
+    });
+  });
+</script>

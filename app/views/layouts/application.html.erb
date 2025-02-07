@@ -22,8 +22,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
   <body>
+    <%= include_gon %>
     <%= render 'layouts/navigation' %>
     <%= yield %>
+    <%= render 'layouts/application/private_conversations_windows' %>
   </body>
 </html>
 <script>
@@ -56,7 +58,7 @@
       var modal = document.getElementById('myModal');
       var modalInstance = new bootstrap.Modal(modal);
 
-        modal.addEventListener('hide.bs.modal', function () {
+        modal.addEventListener('hidden.bs.modal', function () {
           // Ensure that navigation works after closing the modal
           document.body.style.overflow = '';
            if (document.activeElement) {

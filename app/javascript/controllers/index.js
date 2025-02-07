@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
+import ChatWindowsController from "./chat_windows_controller"
+application.register("chat-windows", ChatWindowsController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import ModalController from "./modal_controller"
-application.register("modal", ModalController)
+import ToggleWindowController from "./toggle_window_controller"
+application.register("toggle-window", ToggleWindowController)

@@ -1,0 +1,9 @@
+<script>
+  document.addEventListener("turbo:load", function() {
+    document.querySelectorAll('.contact-user').forEach(element => {
+      element.outerHTML = `
+       <div>Message has not been sent</div>
+      `;
+    });
+  });
+</script>

@@ -1,0 +1,41 @@
+<script>
+  document.addEventListener("turbo:load", function () {
+  let conversationId = "<%= @conversation.id %>";
+  let conversation = document.querySelector(
+  `[data-conversation-id='${conversationId}']`
+  );
+  let chatWindowsCount =
+  document.querySelectorAll(".conversation-window").length + 1;
+  if (!conversation) {
+  document.body.insertAdjacentHTML(
+  "beforeend",
+  "<%= j(render 'private/conversations/conversation', \
+                                    conversation: @conversation, \
+                                    user: current_user) %>"
+  );
+  conversation = document.querySelector(
+  `[data-conversation-id='${conversationId}']`
+  );
+  }
+  // Toggle conversation window after creation
+  document
+  .querySelector(
+  `.conversation-window:nth-of-type(${chatWindowsCount}) .conversation-heading`
+  )
+  ?.click();
+  // Mark as seen by clicking it
+  setTimeout(() => {
+  document
+  .querySelector(`.conversation-window:nth-of-type(${chatWindowsCount})`)
+  ?.click();
+  }, 1000);
+  // Focus textarea
+  document
+  .querySelector(
+  `.conversation-window:nth-of-type(${chatWindowsCount}) form textarea`
+  )
+  ?.focus();
+  // Reposition all conversation windows
+  positionChatWindows();
+  });
+</script>

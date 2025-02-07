@@ -1,0 +1,20 @@
+document.addEventListener('turbo:load', () => {
+const conversationId = "<%= @conversation.id %>";
+const idType = "<%= @id_type %>";
+const messagesList = document.querySelector(`#${idType}${conversationId} .messages-list`);
+const loadMoreMessagesLink = document.querySelector(`#${idType}${conversationId} .load-more-messages`);
+// Temporarily disable the "Load More Messages" link
+if (loadMoreMessagesLink) {
+loadMoreMessagesLink.replaceWith('<span class="load-more-messages"></span>');
+}
+// Render previous messages and prepend them to the message list
+const messagesListUl = messagesList.querySelector('ul');
+const renderedMessages = "<%= j render "#{@type}/conversations/messages" %>";
+if (messagesListUl) {
+messagesListUl.insertAdjacentHTML('afterbegin', renderedMessages);
+}
+// After new messages are appended, leave a gap at the top of the scrollbar
+if (messagesList) {
+messagesList.scrollTop = 400;
+}
+});
