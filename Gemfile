@@ -7,7 +7,7 @@ gem 'will_paginate-bootstrap-style'
 gem 'will_paginate', '~> 4.0'
 gem 'faker'
 gem 'devise'
-gem "rails", "~> 8.0.1"
+gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record
